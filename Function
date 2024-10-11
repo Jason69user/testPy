@@ -1,0 +1,31 @@
+# 1)
+def max_in_two(a,b):
+    if a > b:
+        return a
+    elif b > a:
+        return b
+    
+result = max_in_two(10, 7)
+print(result)
+
+# 2)
+def empty_function():
+    pass
+
+# 3)
+def even_numbers(n):
+    for i in range(0, n + 1, 2):
+        yield i
+
+n = 10
+for even in even_numbers(n):
+    print(even)
+
+# 4)
+def test_in_two():
+    assert max_in_two(10, 20) == 20, 'ошибка'
+    assert max_in_two(5, 3) == 5, 'ошибка'
+    assert max_in_two(5, 5) == 5, 'ошибка: одинаковые числа'
+
+test_in_two()
+print('тест пройден')
