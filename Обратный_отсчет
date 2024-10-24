@@ -1,0 +1,4 @@
+number = int(input("Введите число: "))
+while number >= 0:
+    print("счетчик =", number)
+    number -= 1
