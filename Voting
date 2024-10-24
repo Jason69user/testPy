@@ -1,8 +1,17 @@
 age_user = int(input('Введите свой возраст: '))
 voting_age = 18
+print("Вы гражданин нашей страны?")
+citizen = input("нажмите 1 если вы гражданин или 0 если не гражданин: ").strip().lower() == "да"
+criminal = input("У вас есть непогашеная судимость?").strip().lower() == "да"
 
-if (age_user >= voting_age):
-    print("Гражданин допушен к голосованию на выборах")
+def can_vote(age_user, citizen, criminal):
+    if age_user < voting_age:
+        return "Вы допушены к голосованию на выборах: вам меньше 18 лет"
+    if not citizen:
+        return "Вы не допушены до выборов: вы не гражданин"
+    if criminal:
+        return "Вы не допушены к голосованию на выборах: у вас не погашенная судимость"
+    return "Вы можете голосовать"
 
-elif (age_user < voting_age):
-    print("Гражданин не допушен к голосованию на выборах")
+result = can_vote(age_user, citizen, criminal)
+print(result)
