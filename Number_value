@@ -1,0 +1,18 @@
+def number_value (number):
+    word = {
+        1: "alpha",
+        2: "beta",
+        3: "gama",
+        4: "delta",
+        5: "omega"
+    }
+
+    return word.get(number, "Число вне диапазона")
+
+
+try:
+    user_input = int(input("Введите число от 1 до 5: "))
+    result = number_value(user_input)
+    print(result)
+except ValueError:
+    print("Ввели неверное число")
