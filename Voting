@@ -1,0 +1,8 @@
+age_user = int(input('Введите свой возраст: '))
+voting_age = 18
+
+if (age_user >= voting_age):
+    print("Гражданин допушен к голосованию на выборах")
+
+elif (age_user < voting_age):
+    print("Гражданин не допушен к голосованию на выборах")
