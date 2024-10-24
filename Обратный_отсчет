@@ -1,4 +1,7 @@
-number = int(input("Введите число: "))
-while number >= 0:
-    print("счетчик =", number)
-    number -= 1
+try:
+    number = int(input("Введите целое число: "))
+    while number >= 0:
+            print("счетчик =", number)
+            number -= 1
+except ValueError:
+    print("Вы ввели некоректное число")
