@@ -1,0 +1,32 @@
+import string
+
+my_text = input("Введите текст для анализа: ")
+my_text = my_text.translate(str.maketrans("", "", string.punctuation))
+words = my_text.lower().split()
+
+vowels = "аеёиоуыэюя"
+vowels_count = 0
+word_count = len(words)
+long_word = ""
+word_frequency = {}
+
+
+for word in words:
+    for char in word:
+        if char in vowels:
+            vowels_count += 1
+    if word in word_frequency:
+        word_frequency[word] += 1
+    else:
+        word_frequency[word] = 1
+
+    if len(word) > len(long_word):
+        long_word = word
+
+
+print(f"В тексте: \n{word_count} слов")
+print(f"{vowels_count} гласных")
+print(f"'{long_word}' самое длинное слово")
+print("Количество повторения каждого слова в тексте")
+for word, count in word_frequency.items():
+    print(f"'{word}': {count}")
