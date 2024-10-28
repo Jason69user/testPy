@@ -1,0 +1,26 @@
+sum = 0
+count = 0
+
+
+for i in range(1, 101):
+    if i % 2 == 0:
+        sum += i
+
+
+quadro = [j**2 for j in range(1, 11) if j % 2 != 0]
+
+try:
+    for _ in range(1000):
+        number = int(input("Введите целое число : "))
+        if number < 0:
+            break
+
+        count += 1
+except ValueError:
+    print("Ошибка ввода. Можно вводить только целые числа")
+
+
+print(f"Сумма четных чисел: {sum}")
+print(f"Список квадратов нечетных чисел: {quadro}")
+print(f"Количество введеных чисел: {count}")
+
