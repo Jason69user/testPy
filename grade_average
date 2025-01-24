@@ -16,10 +16,19 @@ def display_stud(students):
         status = 'успех' if average_grade >= 75 else 'отстающий'
         print(f'Имя студента {student['name']}\nСредний бал:{average_grade: .0f}\nСтатус: {status} ')
 
+def calc_total_score(students):
+    total_score = 0
+    for student in students:
+        total_score += sum(student['grade'])
+        return total_score
+
 new_student = {'name': 'koshalot', 'grade': [80, 75, 85]}
 students.append(new_student)
 
-fool_student = min(students, key=lambda student: calc_average(student["grade"]))
-students.remove(fool_student)
+fools_student = min(students, key=lambda student: calc_average(student["grade"]))
+students.remove(fools_student)
 
 display_stud(students)
+
+total_score = calc_total_score(students)
+print(f'Общий бал всех студентов {total_score}')
