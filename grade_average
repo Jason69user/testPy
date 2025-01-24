@@ -19,4 +19,7 @@ def display_stud(students):
 new_student = {'name': 'koshalot', 'grade': [80, 75, 85]}
 students.append(new_student)
 
+fool_student = min(students, key=lambda student: calc_average(student["grade"]))
+students.remove(fool_student)
+
 display_stud(students)
