@@ -12,4 +12,5 @@ def calc_average(grades):
 
 for student in students:
     average_grade = calc_average(student['grade'])
-    print(f'Средний балл студента {student['name']}:{average_grade: .0f}')
+    status = 'успех' if average_grade >= 75 else 'отстающий'
+    print(f'Имя студента {student['name']}\nСредний бал:{average_grade: .0f}\nСтатус: {status} ')
