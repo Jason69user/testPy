@@ -10,7 +10,13 @@ def calc_average(grades):
     average = total / count
     return average
 
-for student in students:
-    average_grade = calc_average(student['grade'])
-    status = 'успех' if average_grade >= 75 else 'отстающий'
-    print(f'Имя студента {student['name']}\nСредний бал:{average_grade: .0f}\nСтатус: {status} ')
+def display_stud(students):
+    for student in students:
+        average_grade = calc_average(student['grade'])
+        status = 'успех' if average_grade >= 75 else 'отстающий'
+        print(f'Имя студента {student['name']}\nСредний бал:{average_grade: .0f}\nСтатус: {status} ')
+
+new_student = {'name': 'koshalot', 'grade': [80, 75, 85]}
+students.append(new_student)
+
+display_stud(students)
