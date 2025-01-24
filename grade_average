@@ -1,0 +1,15 @@
+students = [
+    {'name': 'bobr', 'grade': [80, 68, 90]},
+    {'name': 'kit', 'grade': [70, 55, 90]},
+    {'name': 'kura', 'grade': [65, 0, 80]}
+]
+
+def calc_average(grades):
+    total = sum(grades)
+    count = len(grades)
+    average = total / count
+    return average
+
+for student in students:
+    average_grade = calc_average(student['grade'])
+    print(f'Средний балл студента {student['name']}:{average_grade: .0f}')
