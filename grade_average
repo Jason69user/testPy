@@ -18,9 +18,12 @@ def display_stud(students):
 
 def calc_total_score(students):
     total_score = 0
+    total_count = 0
     for student in students:
         total_score += sum(student['grade'])
-        return total_score
+        total_count += len(student['grade'])
+    average_score = total_score / total_count
+    return average_score
 
 new_student = {'name': 'koshalot', 'grade': [80, 75, 85]}
 students.append(new_student)
