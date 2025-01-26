@@ -1,0 +1,5 @@
+my_list = ['kva', 'mur', 'gav']
+
+total_element = len(my_list)
+
+print(total_element)
