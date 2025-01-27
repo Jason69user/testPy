@@ -11,18 +11,13 @@ def display_students(students):
 
 
 def calculated_total_score(students):
+    total_score = 0
+    total_count = 0
     for student in students:
-        total_score = sum(student['grade'])
-        total_count = len(student['grade'])
+        total_score += sum(student['grade'])
+        total_count += len(student['grade'])
     average_score = total_score / total_count
     return average_score
-
-
-students = [
-    {'name': 'bobr', 'grade': [80, 68, 90]},
-    {'name': 'kit', 'grade': [70, 55, 90]},
-    {'name': 'kura', 'grade': [65, 0, 80]}
-]
 
 
 def new_student (name, grade):
@@ -36,11 +31,16 @@ def fools_student():
     students.remove(student)
     return student['name']
 
+students = [
+    {'name': 'bobr', 'grade': [80, 68, 90]},
+    {'name': 'kit', 'grade': [70, 55, 90]},
+    {'name': 'kura', 'grade': [65, 0, 80]}
+]
 
 new_student('koshalot', [45, 90, 56])
 display_students(students)
-removed_student_name = fools_student()
 total_score = calculated_total_score(students)
+removed_student_name = fools_student()
 
 print(f'Общий бал всех студентов {total_score: .0f}')
 print(f'Студент с наименьшим средним баллом "{removed_student_name}" был удален.\n')
