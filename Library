@@ -1,0 +1,27 @@
+def book_list_view(library):
+    for book in library.keys():
+        print({book})
+    if not library:
+        print('В библиотеке нет книг')
+
+
+library = {
+    'Horus Rising': {
+        'autor': 'Den Abnet',
+        'year': '2006',
+        'availability': 'true'
+    },
+    'False gods': {
+        'autor': 'Graham McNeill',
+        'year': '2006',
+        'availability': 'true'
+    },
+    'Galaxy in Flames': {
+        'autor': 'Ben Counter',
+        'year': '2006',
+        'availability': 'true'
+    },
+}
+
+
+book_list_view(library)
