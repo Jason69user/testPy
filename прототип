@@ -42,5 +42,5 @@ display_students(students)
 removed_student_name = fools_student()
 total_score = calculated_total_score(students)
 
-print(f'Общий бал всех студентов {total_score: .2f}')
+print(f'Общий бал всех студентов {total_score: .0f}')
 print(f'Студент с наименьшим средним баллом "{removed_student_name}" был удален.\n')
