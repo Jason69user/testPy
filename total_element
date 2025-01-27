@@ -1,5 +1,6 @@
-my_list = ['kva', 'mur', 'gav']
+my_list = ['kva', 'mur', 'mur', 'gav']
 
-total_element = len(my_list)
+my_set = set(my_list)
+total_element = len(my_set)
 
 print(total_element)
