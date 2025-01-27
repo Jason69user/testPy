@@ -1,37 +1,46 @@
+def calculated_average(grades):
+    average = sum(grades) / len(grades)
+    return average
+
+
+def display_students(students):
+    for student in students:
+        average_grade = calculated_average(student['grade'])
+        status = 'успех' if average_grade >= 75 else 'отстающий'
+        print(f'Имя студента {student['name']}\nСредний бал:{average_grade: .0f}\nСтатус: {status} ')
+
+
+def calculated_total_score(students):
+    for student in students:
+        total_score = sum(student['grade'])
+        total_count = len(student['grade'])
+    average_score = total_score / total_count
+    return average_score
+
+
 students = [
     {'name': 'bobr', 'grade': [80, 68, 90]},
     {'name': 'kit', 'grade': [70, 55, 90]},
     {'name': 'kura', 'grade': [65, 0, 80]}
 ]
 
-def calc_average(grades):
-    total = sum(grades)
-    count = len(grades)
-    average = total / count
-    return average
 
-def display_stud(students):
-    for student in students:
-        average_grade = calc_average(student['grade'])
-        status = 'успех' if average_grade >= 75 else 'отстающий'
-        print(f'Имя студента {student['name']}\nСредний бал:{average_grade: .0f}\nСтатус: {status} ')
+def new_student (name, grade):
+    student = {'name': name, 'grade': grade}
+    students.append(student)
+    return name, grade
 
-def calc_total_score(students):
-    total_score = 0
-    total_count = 0
-    for student in students:
-        total_score += sum(student['grade'])
-        total_count += len(student['grade'])
-    average_score = total_score / total_count
-    return average_score
 
-new_student = {'name': 'koshalot', 'grade': [80, 75, 85]}
-students.append(new_student)
+def fools_student():
+    student = min(students, key=lambda student: calculated_average(student["grade"]))
+    students.remove(student)
+    return student['name']
 
-fools_student = min(students, key=lambda student: calc_average(student["grade"]))
-students.remove(fools_student)
 
-display_stud(students)
+new_student('koshalot', [45, 90, 56])
+display_students(students)
+removed_student_name = fools_student()
+total_score = calculated_total_score(students)
 
-total_score = calc_total_score(students)
-print(f'Общий бал всех студентов {total_score}')
+print(f'Общий бал всех студентов {total_score: .0f}')
+print(f'Студент с наименьшим средним баллом "{removed_student_name}" был удален.\n')
