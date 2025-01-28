@@ -1,13 +1,13 @@
-def calculated_average(grades):
+def calculate_average(grades):
     average = sum(grades) / len(grades)
     return average
 
 
 def display_students(students):
     for student in students:
-        average_grade = calculated_average(student['grade'])
+        average_grade = calculate_average(student['grade'])
         status = 'успех' if average_grade >= 75 else 'отстающий'
-        print(f'Имя студента {student['name']}\nСредний бал:{average_grade: .0f}\nСтатус: {status} ')
+        print(f'\nИмя студента {student['name']}\nСредний бал:{average_grade: .0f}\nСтатус: {status} ')
 
 
 def calculated_total_score(students):
@@ -20,16 +20,19 @@ def calculated_total_score(students):
     return average_score
 
 
-def new_student (name, grade):
+def join_new_student (name, grade):
     student = {'name': name, 'grade': grade}
     students.append(student)
-    return name, grade
+    print(f'\nДобавлен студент: {name}.')
+    display_students(students)
 
 
-def fools_student():
-    student = min(students, key=lambda student: calculated_average(student["grade"]))
+def remove_student():
+    student = min(students, key=lambda student: calculate_average(student["grade"]))
     students.remove(student)
-    return student['name']
+    print(f'\nСтудент с наименьшим средним баллом "{student["name"]}" был удален.')
+    display_students(students)
+
 
 students = [
     {'name': 'bobr', 'grade': [80, 68, 90]},
@@ -37,10 +40,11 @@ students = [
     {'name': 'kura', 'grade': [65, 0, 80]}
 ]
 
-new_student('koshalot', [45, 90, 56])
-display_students(students)
-total_score = calculated_total_score(students)
-removed_student_name = fools_student()
 
-print(f'Общий бал всех студентов {total_score: .0f}')
-print(f'Студент с наименьшим средним баллом "{removed_student_name}" был удален.\n')
+display_students(students)
+join_new_student('koshalot', [45, 90, 56])
+total_score = calculated_total_score(students)
+remove_student()
+
+
+print(f'\nОбщий бал всех студентов {total_score: .0f}')
