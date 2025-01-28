@@ -1,8 +1,8 @@
 def book_list_view(library):
-    for book in library.keys():
-        print({book})
     if not library:
         print('В библиотеке нет книг')
+    for book in library:
+        print({book})
 
 
 library = {
