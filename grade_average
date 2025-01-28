@@ -6,7 +6,7 @@ def calculate_average(grades):
 def display_students(students):
     for student in students:
         average_grade = calculate_average(student['grade'])
-        status = 'успех' if average_grade >= 75 else 'отстающий'
+        status = 'успешен' if average_grade >= 75 else 'отстающий'
         print(f'\nИмя студента {student['name']}\nСредний бал:{average_grade: .0f}\nСтатус: {status} ')
 
 
