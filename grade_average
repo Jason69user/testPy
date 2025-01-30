@@ -3,13 +3,6 @@ def calculate_average(grades):
     return average
 
 
-def display_students(students):
-    for student in students:
-        average_grade = calculate_average(student['grade'])
-        status = 'успешен' if average_grade >= 75 else 'отстающий'
-        print(f'\nИмя студента {student['name']}\nСредний бал:{average_grade: .0f}\nСтатус: {status} ')
-
-
 def calculated_total_score(students):
     total_score = 0
     total_count = 0
@@ -20,10 +13,19 @@ def calculated_total_score(students):
     return average_score
 
 
+def display_students(students):
+    for student in students:
+        average_grade = calculate_average(student['grade'])
+        status = 'успешен' if average_grade >= 75 else 'отстающий'
+        print(f'\nИмя студента {student['name']}\nСредний бал: {average_grade:.2f}\nСтатус: {status} ')
+    total_score = calculated_total_score(students)
+    print(f'\nОбщий бал всех студентов {total_score:.2f}')
+
+
 def join_new_student (name, grade):
     student = {'name': name, 'grade': grade}
     students.append(student)
-    print(f'\nДобавлен студент: {name}.')
+    print(f'\nДобавлен студент: {name}')
     display_students(students)
 
 
@@ -43,8 +45,4 @@ students = [
 
 display_students(students)
 join_new_student('koshalot', [45, 90, 56])
-total_score = calculated_total_score(students)
 remove_student()
-
-
-print(f'\nОбщий бал всех студентов {total_score: .0f}')
