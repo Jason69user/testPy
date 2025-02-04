@@ -4,24 +4,31 @@ def book_list_view(library):
     for book in library:
         print({book})
 
+def add_book(title, author, year):
+    book = {'author': author, 'year': year, 'availability': 'none' }
+    library[title] = (book)
+    if library[title] = title
+    print(f'\nДобавлена книга: {title}')
+    book_list_view(library)
+
 
 library = {
     'Horus Rising': {
-        'autor': 'Den Abnet',
+        'author': 'Den Abnet',
         'year': '2006',
         'availability': 'true'
     },
     'False gods': {
-        'autor': 'Graham McNeill',
+        'author': 'Graham McNeill',
         'year': '2006',
         'availability': 'true'
     },
     'Galaxy in Flames': {
-        'autor': 'Ben Counter',
+        'author': 'Ben Counter',
         'year': '2006',
         'availability': 'true'
     },
 }
 
-
 book_list_view(library)
+add_book('kukushka', 'baklan', '1984')
