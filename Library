@@ -4,11 +4,19 @@ def book_list_view(library):
     for book in library:
         print({book})
 
+
 def add_book(title, author, year):
-    book = {'author': author, 'year': year, 'availability': 'none' }
-    library[title] = (book)
-    if library[title] = title
-    print(f'\nДобавлена книга: {title}')
+    if title in library:
+        print(f'Книга с названием "{title}" уже существует.')
+        update = input('Обновить информацию о книге? (да/нет)')#.strip().lower()
+        if update == 'да':
+            library[title] = {'author': author, 'year': year, 'availability': 'none' }
+            print(f'Информамция о книге "{title}" обновлена.')
+        else:
+            print('Информация о книге не изменилась')
+    else:
+        library[title] = {'author': author, 'year': year, 'availability': 'none'}
+        print(f'\nДобавлена книга: {title}')
     book_list_view(library)
 
 
@@ -30,5 +38,7 @@ library = {
     },
 }
 
+
 book_list_view(library)
-add_book('kukushka', 'baklan', '1984')
+add_book('Burning of Prospero', 'Den Abnet', '2013')
+add_book('Horus Rising', 'new author', '2023')
