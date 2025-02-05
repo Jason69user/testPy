@@ -7,18 +7,27 @@ def book_list_view(library):
 
 def add_book(title, author, year):
     if title in library:
-        print(f'Книга с названием "{title}" уже существует.')
-        update = input('Обновить информацию о книге? (да/нет)')#.strip().lower()
+        print(f'\nКнига с названием "{title}" уже существует.')
+        update = input('Обновить информацию о книге? (да/нет)')
         if update == 'да':
             library[title] = {'author': author, 'year': year, 'availability': 'none' }
-            print(f'Информамция о книге "{title}" обновлена.')
+            print(f'Информамция о книге "{title}" обновлена.\n')
         else:
-            print('Информация о книге не изменилась')
+            print('Информация о книге не изменилась.\n')
     else:
         library[title] = {'author': author, 'year': year, 'availability': 'none'}
-        print(f'\nДобавлена книга: {title}')
+        print(f'\nДобавлена книга: {title}\n')
     book_list_view(library)
 
+
+def remove_book(title):
+    if title in library:
+        del library[title]
+        print(f'\nКнига {title} была удалена из библиотеки.\n')
+    else:
+        print(f'\nКнига {title} не найдена.\n')
+    book_list_view(library)
+    
 
 library = {
     'Horus Rising': {
@@ -42,3 +51,4 @@ library = {
 book_list_view(library)
 add_book('Burning of Prospero', 'Den Abnet', '2013')
 add_book('Horus Rising', 'new author', '2023')
+remove_book('Galaxy in Flames')
