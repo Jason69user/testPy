@@ -5,7 +5,7 @@ def book_list_view(library):
         print({book})
 
 
-def add_book(title, author, year):
+def add_book(library, title, author, year):
     if title in library:
         print(f'\nКнига с названием "{title}" уже существует.')
         update = input('Обновить информацию о книге? (да/нет)')
@@ -20,7 +20,7 @@ def add_book(title, author, year):
     book_list_view(library)
 
 
-def remove_book(title):
+def remove_book(library, title):
     if title in library:
         del library[title]
         print(f'\nКнига {title} была удалена из библиотеки.\n')
@@ -49,6 +49,6 @@ library = {
 
 
 book_list_view(library)
-add_book('Burning of Prospero', 'Den Abnet', '2013')
-add_book('Horus Rising', 'new author', '2023')
-remove_book('Galaxy in Flames')
+add_book(library, 'Burning of Prospero', 'Den Abnet', '2013')
+add_book(library, 'Horus Rising', 'new author', '2023')
+remove_book(library, 'Galaxy in Flames')
