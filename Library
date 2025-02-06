@@ -30,25 +30,26 @@ def remove_book(library, title):
 
 
 def issue_book(library, title):
-    if title in library:
-        if library[title]['availability'] == 'true':
-            library[title]['availability'] = 'false'
-            print(f'\nКнига {title} выдана')
-        elif library[title]['availability'] == 'none':
-            print(f'\nКнига {title} еще не инвентаризирована')
-        else:
-            print(f'\nКнига {title} уже выдана')
-    else:
+    if title not in library:
         print(f'\nКнига {title} не найдена.\n')
+        return
+    availability = library[title]['availability']
+    if availability == 'true':
+       library[title]['availability'] = 'false'
+       print(f'\nКнига {title} выдана')
+    elif availability == 'none':
+       print(f'\nКнига {title} еще не инвентаризирована')
+    elif availability == 'false':
+       print(f'\nКнига {title} уже выдана')
 
 
 def return_book(library, title):
-    if title in library:
-        if library[title]['availability'] == 'false':
-            library[title]['availability'] = 'true'
-            print(f'\nКнига {title} возвращена в библиотеку.\n')
-        else:
-            print(f'\nКнига "{title}" уже находится в библиотеке.\n')
+    availability = library[title]['availability']
+    if availability == 'false':
+       library[title]['availability'] = 'true'
+       print(f'\nКнига {title} возвращена в библиотеку.\n')
+    else:
+       print(f'\nКнига "{title}" уже находится в библиотеке.\n')
 
 
 library = {
