@@ -55,7 +55,13 @@ def return_book(library, title):
 def find_book(library):
     find = input('Введите название книги: ')
     if find in library:
-        print(f'Книга "{find}" есть в библиотеке.')
+        availability = library[find]['availability']
+        if availability == 'none':
+            print(f'Книга "{find}" есть в библиотеке, но ее статус не определен.')
+        elif availability == 'false':
+            print(f'Книга "{find}" выдана')
+        elif availability == 'true':
+            print(f'Книга "{find}" доступна')
     else:
         print(f'Книга "{find}" не найдена в библиотеке.')
 
