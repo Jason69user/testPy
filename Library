@@ -35,21 +35,29 @@ def issue_book(library, title):
         return
     availability = library[title]['availability']
     if availability == 'true':
-       library[title]['availability'] = 'false'
-       print(f'\nКнига {title} выдана')
+        library[title]['availability'] = 'false'
+        print(f'\nКнига {title} выдана')
     elif availability == 'none':
-       print(f'\nКнига {title} еще не инвентаризирована')
+        print(f'\nКнига {title} еще не инвентаризирована')
     elif availability == 'false':
-       print(f'\nКнига {title} уже выдана')
+        print(f'\nКнига {title} уже выдана')
 
 
 def return_book(library, title):
     availability = library[title]['availability']
     if availability == 'false':
-       library[title]['availability'] = 'true'
-       print(f'\nКнига {title} возвращена в библиотеку.\n')
+        library[title]['availability'] = 'true'
+        print(f'\nКнига {title} возвращена в библиотеку.\n')
     else:
-       print(f'\nКнига "{title}" уже находится в библиотеке.\n')
+        print(f'\nКнига "{title}" уже находится в библиотеке.\n')
+
+
+def find_book(library):
+    find = input('Введите название книги: ')
+    if find in library:
+        print(f'Книга "{find}" есть в библиотеке.')
+    else:
+        print(f'Книга "{find}" не найдена в библиотеке.')
 
 
 library = {
@@ -77,3 +85,4 @@ add_book(library,'Horus Rising', 'Den Abnet', '2006')
 remove_book(library,'Galaxy in Flames')
 issue_book(library,'False gods')
 return_book(library,'False gods')
+find_book(library)
