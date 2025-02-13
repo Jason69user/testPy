@@ -1,6 +1,7 @@
 def book_list_view(library):
     if not library:
         print('В библиотеке нет книг')
+        return
     for title in library:
         print(title)
 
@@ -44,6 +45,9 @@ def issue_book(library, title):
 
 
 def return_book(library, title):
+    if title not in library:
+        print('В библиотеке нет книг')
+        return
     availability = library[title]['availability']
     if availability == 'false':
         library[title]['availability'] = 'true'
@@ -53,6 +57,9 @@ def return_book(library, title):
 
 
 def find_book(library):
+    if not library:
+        print('В библиотеке нет книг')
+        return
     find = input('Введите название книги: ')
     if find in library:
         availability = library[find]['availability']
