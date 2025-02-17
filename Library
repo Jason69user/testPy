@@ -30,7 +30,8 @@ def remove_book(library, title):
     book_list_view(library)
 
 
-def issue_book(library, title):
+def issue_book(library):
+    title = input('Введите название книги: ')
     if title not in library:
         print(f'\nКнига {title} не найдена.\n')
         return
@@ -73,6 +74,46 @@ def find_book(library):
         print(f'Книга "{find}" не найдена в библиотеке.')
 
 
+def library_menu():
+    password = 'flugergehaimer'
+    print('Добро пожаловать в нашу библиотеку.')
+    while True:
+        enter = input('Выбирите из списка действие которое хотите совершить.'
+                  '\n1 - Просмотреть список книг из библиотеки.'
+                  '\n2 - Поиск книг по названию.'
+                  '\n3 - Получить книгу'
+                  '\n4 - Вернуть книгу'
+                  '\n5 - Добавить книгу(только для сотрудников библиотеки)'
+                  '\n6 - Удалить книгу(только для сотрудников библиотеки)'
+                  '\n7 - Выйти'
+                  '\n Нажмите на цифру пункта меню: ')
+        if enter == '1':
+            book_list_view(library)
+        elif enter == '2':
+            find_book(library)
+        elif enter == '3':
+            issue_book(library)
+        elif enter == '4':
+            return_book(library, title= input('Введите название книги: '))
+        elif enter == '5':
+            enter_password = input('Введите пароль: ')
+            if enter_password == password:
+                add_book(library,'Horus Rising', 'Den Abnet', '2006')
+            else:
+                print('Пароль неверный')
+        elif enter == '6':
+            enter_password = input('Введите пароль: ')
+            if enter_password == password:
+                remove_book(library, title=input('Введите название книги'))
+            else:
+                print('Пароль неверный')
+        elif enter == '7':
+            print('Выход из программы.')
+            break
+        else:
+            print('Неверный ввод, попробуйте снова')
+
+
 library = {
     'Horus Rising': {
         'author': 'new author',
@@ -92,10 +133,4 @@ library = {
 }
 
 
-book_list_view(library)
-add_book(library,'Burning of Prospero', 'Den Abnet', '2013')
-add_book(library,'Horus Rising', 'Den Abnet', '2006')
-remove_book(library,'Galaxy in Flames')
-issue_book(library,'False gods')
-return_book(library,'False gods')
-find_book(library)
+library_menu()
