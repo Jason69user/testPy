@@ -95,20 +95,22 @@ def library_menu():
         elif enter == '3':
             issue_book(library)
         elif enter == '4':
-            return_book(library, title= input('Введите название книги: '))
+            title = input('Введите название книги: ')
+            return_book(library, title)
         elif enter == '5':
             enter_password = input('Введите пароль: ')
             if enter_password == password:
-                add_book(library,
-                         title= input('Введите название новой книги: '),
-                         author= input('Введите имя автора: '),
-                         year= input('Введите год издания: '))
+                title = input('Введите название новой книги: ')
+                author = input('Введите имя автора: ')
+                year = input('Введите год издания: ')
+                add_book(library, title, author, year)
             else:
                 print('Пароль неверный')
         elif enter == '6':
             enter_password = input('Введите пароль: ')
             if enter_password == password:
-                remove_book(library, title=input('Введите название книги: '))
+                title = input('Введите название книги: ')
+                remove_book(library, title)
             else:
                 print('Пароль неверный')
         elif enter == '7':
