@@ -1,0 +1,55 @@
+class ToDoList:
+    def __init__(self):
+        self.tasks = []
+
+
+    def add_task(self,task):
+        self.tasks.append({'task': task, 'completed': False})
+        print(f'Задача "{task}" добавлена.')
+
+
+    def complete_task(self, task):
+        for i in self.tasks:
+            if i['task'] == task:
+                i['completed'] = True
+                print(f'Задача "{task}" выполнена.')
+                return
+        print(f'Задача "{task}" не найдена')
+
+
+    def remove_task(self, task):
+        for i in self.tasks:
+            if i['task'] == task:
+                self.tasks.remove(i)
+                print(f'Задача "{task}" удалена')
+                return
+        print(f'Задача "{task}" не найдена')
+
+
+    def list_task(self):
+        if not self.tasks:
+            print('Список задач пуст')
+        else:
+            for i in self.tasks:
+                status = '✔️' if i['completed'] == True else '❌'
+                print(f'{i["task"]} [{status}]')
+
+
+todo_list = ToDoList()
+
+todo_list.add_task('Пройти еще раз Ведьмака')
+todo_list.add_task('Пойти на работу')
+todo_list.add_task('Дочитать наконец-то "Ересь Хоруса"')
+
+print("\nСписок задач:")
+todo_list.list_task()
+
+todo_list.complete_task('Погулять с собакой')
+todo_list.complete_task('Пройти еще раз Ведьмака')
+print("\nСписок задач после выполнения:")
+todo_list.list_task()
+
+todo_list.remove_task('Пойти на работу')
+
+print("\nСписок задач после удаления:")
+todo_list.list_task()
