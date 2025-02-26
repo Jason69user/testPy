@@ -1,55 +1,67 @@
 class ToDoList:
     def __init__(self):
-        self.tasks = []
-
+        self.tasks = {}
+        self.id = 1
 
     def add_task(self,task):
-        self.tasks.append({'task': task, 'completed': False})
-        print(f'Задача "{task}" добавлена.')
-
-
-    def complete_task(self, task):
         for i in self.tasks:
             if i['task'] == task:
-                i['completed'] = True
-                print(f'Задача "{task}" выполнена.')
+                print('Такая задача уже есть')
                 return
-        print(f'Задача "{task}" не найдена')
+        self.tasks[self.id] = {'task': task, 'completed': False}
+        print(f'Задача №{self.id} "{task}" добавлена.')
+        self.id += 1
 
+    def complete_task(self, task_id):
+        if task_id in self.tasks:
+            self.tasks[task_id]['completed'] = True
+            print(f"Задача {task_id} '{self.tasks[task_id]['task']}' выполнена.")
+        else:
+            print('Задача не найдена.')
 
-    def remove_task(self, task):
-        for i in self.tasks:
-            if i['task'] == task:
-                self.tasks.remove(i)
-                print(f'Задача "{task}" удалена')
-                return
-        print(f'Задача "{task}" не найдена')
-
+    def remove_task(self, task_id):
+        if task_id in self.tasks:
+            removed_task = self.tasks.pop(task_id)
+            print(f"Задача {task_id} {removed_task['task']} удалена.")
+        else:
+            print('Задача не найдена.')
 
     def list_task(self):
         if not self.tasks:
             print('Список задач пуст')
         else:
-            for i in self.tasks:
-                status = '✔️' if i['completed'] == True else '❌'
-                print(f'{i["task"]} [{status}]')
+            for task_id, task in self.tasks.items():
+                status = '✔️' if task['completed'] is True else '❌'
+                print(f'{task_id} {task["task"]} [{status}]')
 
 
-todo_list = ToDoList()
+def todo_menu():
+    todo_list = ToDoList()
+    while True:
+        enter = input('\nВыбирите действие из списка ниже:'
+                      '\n1 - Просмотреть список задач'
+                      '\n2 - Добавить задачу'
+                      '\n3 - Пометить задачу выполенной'
+                      '\n4 - Удалить задачу'
+                      '\n5 - Выйти'
+                      '\n Нажмите на цифру пункта меню: ')
 
-todo_list.add_task('Пройти еще раз Ведьмака')
-todo_list.add_task('Пойти на работу')
-todo_list.add_task('Дочитать наконец-то "Ересь Хоруса"')
+        if enter == '1':
+            todo_list.list_task()
+        elif enter == '2':
+            task = input('Введите название задачи: ')
+            todo_list.add_task(task)
+        elif enter == '3':
+            task_id = int(input('Введите номер задачи: '))
+            todo_list.complete_task(task_id)
+        elif enter == '4':
+            task_id = int(input('Введите номер задачи: '))
+            todo_list.remove_task(task_id)
+        elif enter == '5':
+            print('Выход из программы.')
+            break
+        else:
+            print('Неверный ввод, попробуйте снова')
 
-print("\nСписок задач:")
-todo_list.list_task()
 
-todo_list.complete_task('Погулять с собакой')
-todo_list.complete_task('Пройти еще раз Ведьмака')
-print("\nСписок задач после выполнения:")
-todo_list.list_task()
-
-todo_list.remove_task('Пойти на работу')
-
-print("\nСписок задач после удаления:")
-todo_list.list_task()
+todo_menu()
