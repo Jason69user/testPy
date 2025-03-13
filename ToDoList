@@ -30,8 +30,12 @@ class ToDoList:
             if task_id in self.tasks:
                 removed_task = self.tasks.pop(task_id)
                 print(f"Задача {task_id} {removed_task['task']} удалена.")
-                if task_id < self.id:
-                    self.id = task_id
+                new_tasks = {}
+                for new_id, (y, task) in enumerate(self.tasks.items(), start=1):
+                    new_tasks[new_id] = task
+
+                self.tasks = new_tasks
+                self.id = len(self.tasks) + 1
             else:
                 print('Задача не найдена.')
         except ValueError:
