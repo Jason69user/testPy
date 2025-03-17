@@ -15,7 +15,7 @@ class BankAccount:
                 self.__balance -= amount
                 print(f'С баланса снято {amount} евродолларов')
             else:
-                print('Недостаточно средств на балансе')
+                print('Недостаточно средств на балансе для снятия')
         else:
             print('Сумма снятия должна быть положительной')
 
@@ -30,4 +30,7 @@ account.deposit(1488)
 print(f'Ваш баланс {account.get_balance()} евродолларов')
 
 account.withdraw(250)
+print(f'Ваш баланс {account.get_balance()} евродолларов')
+
+account.withdraw(2500)
 print(f'Ваш баланс {account.get_balance()} евродолларов')
