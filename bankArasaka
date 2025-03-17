@@ -3,21 +3,29 @@ class BankAccount:
         self.__balance = balance
 
     def deposit(self, amount):
-        if amount > 0:
-            self.__balance += amount
-            print(f'Депозит на сумму {amount} евродолларов пополнен')
-        else:
-            print('Сумма депозита должна быть положительной')
+        try:
+            amount = int(amount)
+            if amount > 0:
+                self.__balance += amount
+                print(f'Депозит на сумму {amount} евродолларов пополнен')
+            else:
+                print('Сумма депозита должна быть положительной')
+        except ValueError:
+            print('Введите корректную сумму (число)')
 
     def withdraw(self, amount):
-        if amount > 0:
-            if self.__balance >= amount:
-                self.__balance -= amount
-                print(f'С баланса снято {amount} евродолларов')
+        try:
+            amount = int(amount)
+            if amount > 0:
+                if self.__balance >= amount:
+                    self.__balance -= amount
+                    print(f'С баланса снято {amount} евродолларов')
+                else:
+                    print('Недостаточно средств на балансе для снятия')
             else:
-                print('Недостаточно средств на балансе для снятия')
-        else:
-            print('Сумма снятия должна быть положительной')
+                print('Сумма снятия должна быть положительной')
+        except ValueError:
+            print('Введите корректную сумму (число)')
 
     def get_balance(self):
         print(f'На балансе {self.__balance} евродолларов')
@@ -36,10 +44,10 @@ def account_menu():
         if enter == '1':
             account.get_balance()
         elif enter == '2':
-            amount = int(input('Введите сумму которую хотите внести на счет: '))
+            amount = input('Введите сумму которую хотите внести на счет: ')
             account.deposit(amount)
         elif enter == '3':
-            amount = int(input('Введите сумму которую хотите снять со счета: '))
+            amount = input('Введите сумму которую хотите снять со счета: ')
             account.withdraw(amount)
         elif enter == '4':
             print('Выход из программы.')
