@@ -1,0 +1,33 @@
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f'Депозит на сумму {amount} евродолларов пополнен')
+        else:
+            print('Сумма депозита должна быть положительной')
+
+    def withdraw(self, amount):
+        if amount > 0:
+            if self.__balance >= amount:
+                self.__balance -= amount
+                print(f'С баланса снято {amount} евродолларов')
+            else:
+                print('Недостаточно средств на балансе')
+        else:
+            print('Сумма снятия должна быть положительной')
+
+    def get_balance(self):
+        return self.__balance
+
+
+account = BankAccount(0)
+print(f'Ваш баланс {account.get_balance()} евродолларов')
+
+account.deposit(1488)
+print(f'Ваш баланс {account.get_balance()} евродолларов')
+
+account.withdraw(250)
+print(f'Ваш баланс {account.get_balance()} евродолларов')
