@@ -20,17 +20,31 @@ class BankAccount:
             print('Сумма снятия должна быть положительной')
 
     def get_balance(self):
-        return self.__balance
+        print(f'На балансе {self.__balance} евродолларов')
 
 
-account = BankAccount(0)
-print(f'Ваш баланс {account.get_balance()} евродолларов')
+def account_menu():
+    account = BankAccount(0)
+    while True:
+        enter = input('\nВыбирите действие из списка ниже:'
+                      '\n1 - Просмотреть баланс на счете'
+                      '\n2 - Внести депозит'
+                      '\n3 - Снять наличные'
+                      '\n4 - Выйти'
+                      '\nНажмите на цифру пункта меню: ')
 
-account.deposit(1488)
-print(f'Ваш баланс {account.get_balance()} евродолларов')
+        if enter == '1':
+            account.get_balance()
+        elif enter == '2':
+            amount = int(input('Введите сумму которую хотите внести на счет: '))
+            account.deposit(amount)
+        elif enter == '3':
+            amount = int(input('Введите сумму которую хотите снять со счета: '))
+            account.withdraw(amount)
+        elif enter == '4':
+            print('Выход из программы.')
+            break
+        else:
+            print('Неверный ввод, попробуйте снова')
 
-account.withdraw(250)
-print(f'Ваш баланс {account.get_balance()} евродолларов')
-
-account.withdraw(2500)
-print(f'Ваш баланс {account.get_balance()} евродолларов')
+account_menu()
