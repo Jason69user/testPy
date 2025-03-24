@@ -5,27 +5,26 @@ class BankAccount:
     def deposit(self, amount):
         try:
             amount = int(amount)
-            if amount > 0:
-                self.__balance += amount
-                print(f'Депозит на сумму {amount} евродолларов пополнен')
-            else:
-                print('Сумма депозита должна быть положительной')
         except ValueError:
             print('Введите корректную сумму (число)')
+            return
+
+        self.__balance += amount
+        print(f'Депозит на сумму {amount} евродолларов пополнен')
 
     def withdraw(self, amount):
         try:
             amount = int(amount)
-            if amount > 0:
-                if self.__balance >= amount:
-                    self.__balance -= amount
-                    print(f'С баланса снято {amount} евродолларов')
-                else:
-                    print('Недостаточно средств на балансе для снятия')
-            else:
-                print('Сумма снятия должна быть положительной')
         except ValueError:
             print('Введите корректную сумму (число)')
+            return
+
+        if self.__balance < amount:
+            print('Недостаточно средств на балансе для снятия')
+            return
+
+        self.__balance -= amount
+        print(f'С баланса снято {amount} евродолларов')
 
     def get_balance(self):
         print(f'На балансе {self.__balance} евродолларов')
@@ -33,6 +32,13 @@ class BankAccount:
 
 def account_menu():
     account = BankAccount(0)
+    menu_option = {
+        '1': account.get_balance,
+        '2': lambda: account.deposit(input('Введите сумму которую хотите внести на счет: ')),
+        '3': lambda: account.withdraw(input('Введите сумму которую хотите снять со счета: ')),
+        '4': lambda: print('Выход из программы.') or exit()
+    }
+
     while True:
         enter = input('\nВыбирите действие из списка ниже:'
                       '\n1 - Просмотреть баланс на счете'
@@ -41,18 +47,11 @@ def account_menu():
                       '\n4 - Выйти'
                       '\nНажмите на цифру пункта меню: ')
 
-        if enter == '1':
-            account.get_balance()
-        elif enter == '2':
-            amount = input('Введите сумму которую хотите внести на счет: ')
-            account.deposit(amount)
-        elif enter == '3':
-            amount = input('Введите сумму которую хотите снять со счета: ')
-            account.withdraw(amount)
-        elif enter == '4':
-            print('Выход из программы.')
-            break
+        action = menu_option.get(enter)
+        if action:
+            action()
         else:
-            print('Неверный ввод, попробуйте снова')
+            print('Неверный ввод')
+
 
 account_menu()
