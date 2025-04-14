@@ -23,7 +23,6 @@ class TaskManager:
                 return
         print('Задача не найдена.')
 
-
     def remove_task(self, index: int):
         for i, task in enumerate(self.tasks):
             if task['id'] == index:
@@ -67,7 +66,6 @@ class TaskManager:
         for task in self.tasks:
             status = "✓" if task['completed'] else "✗"
             print(f"[{status}] Задача №{task['id']}: {task['description']}")
-
 
 
 def task_manager():
