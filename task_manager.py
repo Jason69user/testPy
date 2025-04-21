@@ -68,10 +68,11 @@ class TaskManager:
             print(f"[{status}] Задача №{task['id']}: {task['description']}")
 
 
-def task_manager():
-    task_manager = TaskManager()
-    while True:
-        enter = input('\nВыбирите действие из списка ниже:'
+if __name__ == "__main__":
+    def task_manager():
+        task_manager = TaskManager()
+        while True:
+            enter = input('\nВыбирите действие из списка ниже:'
                       '\n1 - Просмотреть список задач'
                       '\n2 - Добавить задачу'
                       '\n3 - Пометить задачу выполенной'
@@ -81,28 +82,28 @@ def task_manager():
                       '\n7 - Выйти'
                       '\n Нажмите на цифру пункта меню: ')
 
-        if enter == '1':
-            task_manager.show_tasks()
-        elif enter == '2':
-            task = input('Введите описание задачи: ')
-            task_manager.add_task(task)
-        elif enter == '3':
-            index = input('Введите номер задачи: ')
-            task_manager.complete_task(index)
-        elif enter == '4':
-            index = input('Введите номер задачи: ')
-            task_manager.remove_task(index)
-        elif enter == '5':
-            filename = input('Назовите файл: ')
-            task_manager.save_to_json(filename)
-        elif enter == '6':
-            filename = input('Назовите файл: ')
-            task_manager.load_from_json(filename)
-        elif enter == '7':
-            print('Выход из программы.')
-            break
-        else:
-            print('Неверный ввод, попробуйте снова')
+            if enter == '1':
+                task_manager.show_tasks()
+            elif enter == '2':
+                task = input('Введите описание задачи: ')
+                task_manager.add_task(task)
+            elif enter == '3':
+                index = input('Введите номер задачи: ')
+                task_manager.complete_task(index)
+            elif enter == '4':
+                index = input('Введите номер задачи: ')
+                task_manager.remove_task(index)
+            elif enter == '5':
+                filename = input('Назовите файл: ')
+                task_manager.save_to_json(filename)
+            elif enter == '6':
+                filename = input('Назовите файл: ')
+                task_manager.load_from_json(filename)
+            elif enter == '7':
+                print('Выход из программы.')
+                break
+            else:
+                print('Неверный ввод, попробуйте снова')
 
 
-task_manager()
+    task_manager()
